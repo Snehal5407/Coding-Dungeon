@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Coding Dungeon</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#101426">
+<meta name="mobile-web-app-capable" content="yes">
+</head>
+<body>
+  <div class="outer-bg">
+    <main id="game" class="game-shell">
+      <header class="hud">
+        <div class="hud-logo">↻</div>
+        <div class="hud-stat hp"><span>♥</span><div><b id="hpText">100/100</b><div class="mini-bar"><i id="hpBar"></i></div></div></div>
+        <div class="hud-stat"><span>★</span><b>LV <em id="playerLevel">1</em></b></div>
+        <div class="hud-stat xp"><span>✦</span><div><b id="xpText">45/100</b><div class="mini-bar"><i id="xpBar"></i></div></div></div>
+        <div class="hud-stat"><span>🔥</span><b>x<span id="streak">2</span></b></div>
+        <div class="hud-stat"><span>🪙</span><b id="coins">65</b></div>
+        <button class="sound" id="soundBtn" title="Sound">🔊</button>
+      </header>
+
+      <section class="region-strip">
+        <div class="region-number" id="regionNumber">01</div>
+        <div class="region-copy"><b id="regionName">BEGINNER MEADOWS</b><small id="regionRange">Levels 1–20</small></div>
+        <button id="prevRegion">◀</button><button id="nextRegion">▶</button>
+      </section>
+
+      <section id="screen" class="screen"></section>
+
+      <nav class="bottom-nav">
+        <button data-screen="map">🏰<small>MAP</small></button>
+        <button data-screen="levels">⏱<small>LEVELS</small></button>
+        <button data-screen="achievements">🏆<small>TROPHIES</small></button>
+        <button data-screen="hero">♟<small>HERO</small></button>
+      </nav>
+
+      <div id="toast" class="toast">Let's code! 🐙</div>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden"></div>
+  <script src="game.js"></script>
+  <script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(() => console.log("Coding Dungeon app is ready!"))
+      .catch((error) => console.error("Service Worker error:", error));
+  });
+}
+</script>
+</body>
+</html>
